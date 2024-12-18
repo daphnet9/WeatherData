@@ -6,11 +6,21 @@ public class WeatherData {
             double temp = temperatures.get(i);
             if (temp < lower || temp > upper) {
                 temperatures.remove(i);
+                i--;
             }
         }
     }
 
-    // public int longestHeatWave(double threshold)
+    public int longestHeatWave(double threshold) {
+        int heatWave = 0;
+        int max = 0;
+        for (double t : temperatures) {
+            if (t > threshold) heatWave++;
+            if (heatWave > max) max = heatWave;
+            else heatWave = 0;
+        }
+        return max;
+    }
 
     public WeatherData(ArrayList<Double> temps) {
         temperatures = temps;
